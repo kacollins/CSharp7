@@ -14,6 +14,7 @@ namespace CSharp7
             DemoBinaryLiterals();
             DemoDigitSeparators();
             DemoLocalFunction("World");
+            DemoPatternMatching();
             Console.ReadKey();
         }
 
@@ -52,5 +53,88 @@ namespace CSharp7
 
             GreetRecipient();
         }
+
+        #region Pattern Matching
+
+        private static void DemoPatternMatching()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Pattern Matching:");
+
+            Attendee[] meetupAttendees = {
+                new Leader("Matt", Leader.Roles.Organizer),
+                new Leader("Danny", Leader.Roles.Co_Organizer),
+                new Leader("David", Leader.Roles.Co_Organizer),
+                new Speaker("Dwayne", "Xamarin Android App"),
+                new Speaker("Aaron", "Interview Recap with Amazon Web Services"),
+                new Speaker("Kimberly", "New Features in C# 7"),
+                new Speaker("Steven", null),
+                new Attendee("Adam"),
+                //lots of other awesome people too
+            };
+
+            foreach (Attendee a in meetupAttendees.OrderBy(a => a.Name))
+            {
+                Console.WriteLine(GetInfo(a));
+            }
+        }
+
+        private static string GetInfo(Attendee a)
+        {
+            if (a is Leader l)
+            {
+                return $"{l.Name} ({l.Role})";
+            }
+            else if (a is Speaker s && string.IsNullOrWhiteSpace(s.Topic))
+            {
+                return $"{s.Name} speaking on unknown topic";
+            }
+            else if (a is Speaker s)
+            {
+                return $"{s.Name} speaking on \"{s.Topic}\"";
+            }
+            else
+            {
+                return $"{a.Name}";
+            }
+        }
+
+        class Attendee
+        {
+            public string Name { get; }
+
+            public Attendee(string name)
+            {
+                this.Name = name;
+            }
+        }
+
+        class Leader : Attendee
+        {
+            public Roles Role { get; }
+
+            public Leader(string name, Roles role) : base(name)
+            {
+                this.Role = role;
+            }
+
+            public enum Roles
+            {
+                Organizer,
+                Co_Organizer
+            }
+        }
+
+        class Speaker : Attendee
+        {
+            public string Topic { get; }
+
+            public Speaker(string name, string topic) : base(name)
+            {
+                this.Topic = topic;
+            }
+        }
+
+        #endregion
     }
 }
