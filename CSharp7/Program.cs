@@ -16,6 +16,7 @@ namespace CSharp7
             DemoLocalFunction("World");
             DemoPatternMatching();
             DemoRefReturns();
+            DemoTuples_Old();
             Console.ReadKey();
         }
 
@@ -156,6 +157,28 @@ namespace CSharp7
         {
             value = 123;
             return ref value;
+        }
+
+        #endregion
+
+        #region Tuples
+
+        private static void DemoTuples_Old()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Tuples:");
+
+            List<int> values = new List<int> { 1, 2, 3, 4, 5 };
+            Tuple<int, int> result = GetCountAndSum(values);
+
+            Console.WriteLine($"{nameof(result.Item1)} = {result.Item1}");
+            Console.WriteLine($"{nameof(result.Item2)} = {result.Item2}");
+        }
+
+        private static Tuple<int, int> GetCountAndSum(List<int> values)
+        {
+            Tuple<int, int> result = new Tuple<int, int>(values.Count, values.Sum());
+            return result;
         }
 
         #endregion
