@@ -13,6 +13,7 @@ namespace CSharp7
         {
             DemoBinaryLiterals();
             DemoDigitSeparators();
+            DemoLocalFunction("World");
             Console.ReadKey();
         }
 
@@ -35,6 +36,21 @@ namespace CSharp7
             Console.WriteLine("Digit Separators:");
             Console.WriteLine($"{nameof(speedOfLight_Old)} = {speedOfLight_Old.ToString("n0")}");
             Console.WriteLine($"{nameof(speedOfLight_New)} = {speedOfLight_New.ToString("n0")}");
+        }
+
+        private static void DemoLocalFunction(string recipient)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Local Function:");
+
+            string greeting = "Hello";
+
+            void GreetRecipient()
+            {
+                Console.WriteLine($"{greeting}, {recipient}!");
+            }
+
+            GreetRecipient();
         }
     }
 }
