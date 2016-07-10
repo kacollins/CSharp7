@@ -12,6 +12,7 @@ namespace CSharp7
         static void Main(string[] args)
         {
             DemoBinaryLiterals();
+            DemoDigitSeparators();
             Console.ReadKey();
         }
 
@@ -23,6 +24,17 @@ namespace CSharp7
             Console.WriteLine("Binary Literals:");
             Console.WriteLine($"{nameof(five_Old)} = {five_Old}");
             Console.WriteLine($"{nameof(five_New)} = {five_New}");
+        }
+
+        private static void DemoDigitSeparators()
+        {
+            int speedOfLight_Old = 299792458;
+            int speedOfLight_New = 299_792_458;
+
+            Console.WriteLine();
+            Console.WriteLine("Digit Separators:");
+            Console.WriteLine($"{nameof(speedOfLight_Old)} = {speedOfLight_Old.ToString("n0")}");
+            Console.WriteLine($"{nameof(speedOfLight_New)} = {speedOfLight_New.ToString("n0")}");
         }
     }
 }
