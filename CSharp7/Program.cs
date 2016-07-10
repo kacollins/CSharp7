@@ -15,6 +15,7 @@ namespace CSharp7
             DemoDigitSeparators();
             DemoLocalFunction("World");
             DemoPatternMatching();
+            DemoRefReturns();
             Console.ReadKey();
         }
 
@@ -133,6 +134,28 @@ namespace CSharp7
             {
                 this.Topic = topic;
             }
+        }
+
+        #endregion
+
+        #region Ref Returns
+
+        private static void DemoRefReturns()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Ref Returns:");
+
+            int input = 0;
+            ref int output = ref ChangeValue(ref input);
+
+            Console.WriteLine($"{nameof(input)} = {input}");
+            Console.WriteLine($"{nameof(output)} = {output}");
+        }
+
+        private static ref int ChangeValue(ref int value)
+        {
+            value = 123;
+            return ref value;
         }
 
         #endregion
