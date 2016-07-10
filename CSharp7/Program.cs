@@ -17,6 +17,9 @@ namespace CSharp7
             DemoPatternMatching();
             DemoRefReturns();
             DemoTuples_Old();
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key:");
             Console.ReadKey();
         }
 
