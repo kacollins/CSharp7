@@ -147,13 +147,29 @@ namespace CSharp7
             Console.WriteLine("Ref Returns:");
 
             int input = 0;
-            ref int output = ref ChangeValue(ref input);
+            int output = ChangeValue(input);
+            ref int outputByRef = ref ChangeValueByRef(ref input);
 
-            Console.WriteLine($"{nameof(input)} = {input}");
-            Console.WriteLine($"{nameof(output)} = {output}");
+            Console.WriteLine($"{nameof(input)} before incrementing = {input}");
+            Console.WriteLine($"{nameof(output)} before incrementing = {output}");
+            Console.WriteLine($"{nameof(outputByRef)} before incrementing = {outputByRef}");
+
+            output++; //output is incremented, but input is not
+            Console.WriteLine($"{nameof(input)} after incrementing {nameof(output)} = {input} (no change)");
+            Console.WriteLine($"{nameof(output)} after incrementing = {output}");
+
+            outputByRef++; //both outputByRef and input are incremented
+            Console.WriteLine($"{nameof(input)} after incrementing {nameof(outputByRef)} = {input}");
+            Console.WriteLine($"{nameof(outputByRef)} after incrementing = {outputByRef}");
         }
 
-        private static ref int ChangeValue(ref int value)
+        private static int ChangeValue(int value)
+        {
+            value = 123;
+            return value;
+        }
+
+        private static ref int ChangeValueByRef(ref int value)
         {
             value = 123;
             return ref value;
