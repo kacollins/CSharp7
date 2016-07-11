@@ -72,6 +72,7 @@ namespace CSharp7
                 new Speaker("Kimberly", "New Features in C# 7"),
                 new Speaker("Steven", null),
                 new Attendee("Adam"),
+                new Attendee("Carmen"),
                 //lots of other awesome people too
             };
 
